@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        input {
+            outline: none;
+        }
+        .register {
+            margin: 0 auto;
+            width: 500px;
+        }
+        .reg-item {
+            width: 398px;
+            height: 50px;
+            margin: 30px 0;
+            border: 1px solid #ccc;
+        }
+        .reg-item label {
+            display: inline-block;
+            width: 87px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+         }
+        .reg-item input {
+            width: 288px;
+            border: none;
+        }
+        .reg-error {
+            color: red;
+            padding-top: 3px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<form class="register">
+    <div class="reg-item">
+        <div>
+            <label>手机号</label>
+            <input type="text" name="phone" placeholder="请输入手机号" ID="tel">
+        </div>
+        <div class="reg-error">
+            <span><!-- *输入有误 --></span>
+        </div>
+    </div>
+    <div class="reg-item">
+        <div>
+            <label>用户名</label>
+            <input type="text" name="phone" placeholder="请输入用户名" id="userName">
+        </div>
+        <div class="reg-error">
+            <span><!-- *只能输入4-20位，且只能包含字母、数字、下划线 --></span>
+        </div>
+    </div>
+</form>
+<script>
+    var tel = document.getElementById("tel");
+    var userName = document.getElementById("userName");
+    var telError = document.querySelector(".reg-error:nth-child(1) span");
+    var userNameError = document.querySelector(".reg-error:nth-child(2) span");
+    tel.oninput = function() {
+        var reg = /^1[34578]\d{9}$/;
+        fMag(this,reg,'请输入正确的手机号');
+    }
+
+    userName.oninput = function() {
+
+        var reg = /^[a-zA-Z0-9_]{4,20}$/;
+        fMag(this,reg,'请输入4-20位，且只能包含字母、数字、下划线');
+    }
+    // 后续提示信息
+    function fMag(that,reg,errormsg){
+        var span = that.parentNode.parentNode.children[1].querySelector("span");
+        if(reg.test(that.value)){
+            span.style.color = "green";
+            span.innerHTML = "*正确";
+        }else{
+            span.style.color = "red";
+            span.innerHTML = errormsg;
+        }
+    }
+</script>
+</body>
+</html>
