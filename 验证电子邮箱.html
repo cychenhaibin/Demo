@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 以数字或者字母开头，中间可以有数字、字母、下划线、-
+    // @后面可以有数字和字母{2,4}
+    // .后面可以有数字和字母{2,4}
+    var reg = /^([0-9]|[a-zA-Z])(\w|\-)+\@([0-9a-zA-Z]){2,4}\.([0-9a-zA-Z]){2,4}$/;
+    var str = '4_@qq.com';
+    console.log((reg.test(str)));
+</script>
+</html>
