@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		input {
+			outline: none;
+		}
+
+		.register {
+			margin: 0 auto;
+			width: 500px;
+		}
+
+		.reg-item {
+			width: 398px;
+			height: 50px;
+			margin: 30px 0;
+			border: 1px solid #ccc;
+		}
+
+		.reg-item label {
+			display: inline-block;
+			width: 87px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+		}
+
+		.reg-item input {
+			width: 288px;
+			border: none;
+		}
+
+		.reg-error {
+			padding-top: 3px;
+			font-size: 12px;
+			color: orange;
+		}
+
+		.reg-success {
+			position: relative;
+		}
+
+		.success {
+			position: absolute;
+			right: 0;
+			background: pink;
+			height: 50px;
+			width: 80px;
+			text-align: center;
+			line-height: 50px;
+			cursor: pointer;
+			letter-spacing: 3px;
+
+		}
+	</style>
+</head>
+
+<body>
+
+	<form class="register">
+		<div class="reg-item">
+			<div>
+				<label>手机号</label>
+				<input type="text" name="phone" placeholder="请输入手机号" ID="tel">
+			</div>
+			<div class="reg-error">
+				<span><!-- *输入有误 --></span>
+			</div>
+		</div>
+		<div class="reg-item">
+			<div>
+				<label>用户名</label>
+				<input type="text" name="phone" placeholder="请输入用户名" id="userName">
+			</div>
+			<div class="reg-error">
+				<span><!-- *只能输入4-20位，且只能包含字母、数字、下划线 --></span>
+			</div>
+		</div>
+		<div class='reg-item'>
+			<div class='reg-success'>
+				<label>验证码</label>
+				<input type="" placeholder="请输入验证码" id="code">
+				<span class='success'>1234</span>
+			</div>
+			<div class='reg-error'>
+				<span id="codeError"><!-- *只能输入4位，必须有数字--></span>
+			</div>
+		</div>
+	</form>
+
+
+	<script type="text/javascript">
+		//验证码===》随机（点击可以换）  4位数字
+		var tel = document.getElementById("tel");
+		var userName = document.getElementById("userName");
+		var telError = document.querySelector(".reg-error:nth-child(1) span");
+		var userNameError = document.querySelector(".reg-error:nth-child(2) span");
+		var success = document.querySelector(".reg-success span");
+		var code = document.getElementById("code");
+		tel.oninput = function () {
+			var reg = /^1[34578]\d{9}$/;
+			fMag(this, reg, '请输入正确的手机号');
+		}
+		userName.oninput = function () {
+			var reg = /^[a-zA-Z0-9_]{4,20}$/;
+			fMag(this, reg, '请输入4-20位，且只能包含字母、数字、下划线');
+		}
+		code.oninput = function () {
+			var reg = /^\d{4}$/
+			fMag(this, reg, '请输入4位数字')
+			// console.log(this.value)
+			// console.log(success.innerHTML)
+			// 和验证码匹配
+			var codeError = document.getElementById("codeError");
+			console.log(codeError)
+			// 判断验证码是否正确
+			if (this.value === success.innerHTML) {
+				codeError.style.color = "green";
+				codeError.innerHTML = "*正确";
+			} else {
+				codeError.style.color = "red";
+				codeError.innerHTML = "验证码错误";
+			}
+		}
+		// 页面加载刷新验证码
+		success.onclick = function () {
+			// 点击验证码刷新
+			this.innerHTML = Math.random().toString().substr(2, 4);
+		}
+		// 后续提示信息
+		function fMag(that, reg, errormsg) {
+			var span = that.parentNode.parentNode.children[1].querySelector("span");
+			// 对验证码实时验证
+			success.onclick = function () {
+				// 点击验证码刷新
+				this.innerHTML = Math.random().toString().substr(2, 4);
+				if (this.innerHTML == that.value) {
+					span.style.color = "green";
+					span.innerHTML = "*正确";
+				} else {
+					span.style.color = "red";
+					span.innerHTML = "验证码错误";
+				}
+			}
+			if (reg.test(that.value)) {
+				span.style.color = "green";
+				span.innerHTML = "*正确";
+			} else {
+				span.style.color = "red";
+				span.innerHTML = errormsg;
+			}
+
+		}
+
+	</script>
+
+</body>
+
+</html>
