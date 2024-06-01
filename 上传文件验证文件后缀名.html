@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    头像：<input type="file" name="avatar" accept="image/*" id="fileExe">
+</body>
+<script>
+    var fileExe = document.getElementById("fileExe");
+    fileExe.onchange = function () {
+        // 获取上传文件名
+        var names = this.files[0].name;
+        // 匹配正则
+        var reg = /(\.jpg|.png|.jpeg)$/i;
+        // 验证文件后缀名
+        if (reg.test(names)) {
+            alert("上传成功！");
+        }else {
+            alert("请上传图片文件！");
+            this.value = "";
+        }
+    }
+</script>
+</html>
