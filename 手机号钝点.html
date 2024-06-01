@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p id="tel"></p>
+</body>
+<script>
+    var tel = document.getElementById('tel')
+    function fTelFormat(tel) {
+        return tel.replace(/(\d{3})(\d{4})(\d{4})/, '$1 $2 $3')
+    }
+    tel.innerHTML = fTelFormat('18511773322')
+    console.log(fTelFormat('18511773322'))
+</script>
+</html>
