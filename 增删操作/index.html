@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.u-l {
+			float: left;
+		}
+
+		.u-r {
+			float: right;
+		}
+
+		.clearfix:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		input {
+			outline: none;
+		}
+
+		.header {
+			color: #fff;
+			background: #000;
+		}
+
+		.wrap {
+			width: 600px;
+			margin: 0 auto;
+		}
+
+		.add {
+			margin-top: 8px;
+		}
+
+		.add input {
+			padding: 3px 8px;
+			border-radius: 8px;
+			border: 1px solid #f7f7f7;
+		}
+
+		.list {
+			margin-top: 80px;
+		}
+
+		.num {
+			font-size: 36px;
+			text-align: right;
+		}
+
+		.list ul li {
+			padding: 6px 12px;
+			color: #fff;
+			background: #000;
+			border-left: 6px solid orange;
+			border-radius: 6px;
+		}
+
+		.list ul li+li {
+			margin-top: 15px;
+		}
+
+		.is-fx {
+			position: fixed;
+			right: 3%;
+			bottom: 10%;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class='header'>
+		<div class='wrap clearfix'>
+			<h1 class='u-l'>增删操作</h1>
+			<div class="u-r add">
+				<input type="" name="" id='txt'>
+				<input type="button" value="添加" id='addBtn'>
+			</div>
+		</div>
+	</div>
+
+	<div class='g-container'>
+		<div class='wrap'>
+			<div class='list'>
+				<p class='num' id='num'></p>
+				<ul id='uls'>
+					<!-- <li class='clearfix'>
+						<span class='u-l'>你好</span>
+						<a href="" class='u-r'>删除</a>
+					</li> -->
+
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class='is-fx' id='isFx'>
+		<img src="fx.png">
+	</div>
+	<script>
+		// 回到顶部
+		var isFx = document.getElementById('isFx');
+		isFx.onclick = function () {
+			document.documentElement.scrollTop = 0;
+		}
+		// 添加节点
+		var addBtn = document.getElementById('addBtn');
+		var txt = document.getElementById('txt');
+		var uls = document.getElementById('uls');
+		addBtn.onclick = function () {
+			var txtVal = txt.value;
+			if (txtVal == '') {
+				return;
+			}
+			if (uls.getElementsByTagName('li').length >= 20) {
+				alert("已经超过20条，不能继续添加");
+				txt.value = '';
+				return;
+			}
+			var newLi = document.createElement('li');
+			newLi.className = 'clearfix';
+			newLi.innerHTML = '<span class="u-l">' + txtVal.trim() + '</span><a href="javascript:;" class="u-r">删除</a>'
+			uls.appendChild(newLi);
+			txt.value = '';
+			num.innerText = uls.getElementsByTagName('li').length;
+			var oA = document.getElementsByTagName('a');
+			var oAlen = oA.length;
+			for (var i = 0; i < oAlen; i++) {
+				oA[i].onclick = function () {
+					uls.removeChild(this.parentNode);
+					num.innerText = uls.getElementsByTagName('li').length > 0 ? num.innerText = uls.getElementsByTagName('li').length : '';
+				}
+			}
+		}
+
+	</script>
+
+</body>
+
+</html>
