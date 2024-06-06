@@ -1,0 +1,77 @@
+.g-main{
+	width:1000px;
+	margin:0 auto;
+}
+.magnifier-min{
+	position: absolute;
+	width:400px;
+	height: 400px;
+}
+.magnifier-min img{
+	width:100%;
+	height: 100%;
+}
+.magnifier-min .lens{
+	position: absolute;
+	left:0;
+	top:0;
+	width:200px;
+	height: 200px;
+	background: #fff;
+	opacity: .5;
+}
+.magnifier-list{
+	margin-top:410px;
+	cursor: pointer;
+}
+.magnifier-list li + li{
+	margin-left:20px;
+}
+.magnifier-list img{
+	width: 50px;
+	height: 50px;
+	border:3px solid #ccc;
+}
+.magnifier-list img.on{
+	border-color:orange;
+
+}
+/* 商品描述 */
+.commodity .total-price{
+	padding:50px 0;
+}
+.commodity .total-price strong{
+	font-size:24px;
+	color:orange;
+}
+.specifications p{
+	padding:10px 0;
+}
+.specifications p span{
+	display: inline-block;
+	padding:3px 6px;
+	border:3px solid #ccc;
+}
+.specifications p span.on{
+	border-color:orange;
+}
+p {
+	cursor: pointer;
+}
+
+.p-img {
+	position: relative;
+	display: none;
+	margin-left: 430px;
+	width: 400px;
+	height: 400px;
+	overflow: hidden;
+	z-index: 999;
+	position: absolute;
+}
+
+.p-img img {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
